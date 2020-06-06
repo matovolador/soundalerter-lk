@@ -181,6 +181,12 @@ function SoundAlerter:OnOptionsCreate()
 								values = self.SA_LANGUAGE,
 								order = 3,
 							},
+							combatText = {
+								type = 'toggle',
+								name = "Combat Text Only",
+								desc = "Disable sounds and use combat text instead",
+								order = 4,
+							}
 						},
 					},
 					advance = {

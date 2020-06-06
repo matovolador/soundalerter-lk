@@ -126,7 +126,7 @@ end
 	
 function SoundAlerter:PlayTrinket()
 	if (sadb.combatText and IsAddOnLoaded("Blizzard_CombatText")) then
-		CombatText_AddMessage("TrinketUsed",CombatText_StandardScroll, 0,0,0,nil,false)
+		CombatText_AddMessage("TrinketUsed",CombatText_StandardScroll, 0,1,1,nil,false)
 	else
 		PlaySoundFile(sadb.sapath.."Trinket.mp3");
 	end
@@ -134,7 +134,7 @@ end
 
 function SoundAlerter:Interrupted()
 	if (sadb.combatText and IsAddOnLoaded("Blizzard_CombatText")) then
-		CombatText_AddMessage("Interrupted",CombatText_StandardScroll, 0,0,0,nil,false)
+		CombatText_AddMessage("Interrupted",CombatText_StandardScroll, 0,1,1,nil,false)
 	else
 		PlaySoundFile(sadb.sapath.."Interrupted.mp3");
 	end
@@ -174,7 +174,7 @@ function SoundAlerter:PlaySpell(list, spellID, ...)
 		if not sadb[list[spellID]] then return end
 		if sadb.debugmode then print("<SA> DEBUG: Playing sound file: "..list[spellID]..".mp3"); end
 		if (sadb.combatText and IsAddOnLoaded("Blizzard_CombatText")) then
-			CombatText_AddMessage(""..list[spellID].."",CombatText_StandardScroll, 0,0,0,nil,false)
+			CombatText_AddMessage(""..list[spellID].."",CombatText_StandardScroll, 0,1,1,nil,false)
 		else
 			PlaySoundFile(sadb.sapath..list[spellID]..".mp3");
 		end
@@ -390,7 +390,7 @@ function SoundAlerter:COMBAT_LOG_EVENT_UNFILTERED(event , ...)
 		elseif (event == "SPELL_INTERRUPT") then
 			if (desttype[COMBATLOG_FILTER_ME] or sourcetype[COMBATLOG_FILTER_ME] and not sadb.interrupt) then
 				if (sadb.combatText and IsAddOnLoaded("Blizzard_CombatText")) then
-					CombatText_AddMessage("Counter",CombatText_StandardScroll, 0,0,0,nil,false)
+					CombatText_AddMessage("Counter",CombatText_StandardScroll, 0,1,1,nil,false)
 				else
 					PlaySoundFile(sadb.sapath.."lockout.mp3");
 				end

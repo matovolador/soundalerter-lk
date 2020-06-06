@@ -389,7 +389,11 @@ function SoundAlerter:COMBAT_LOG_EVENT_UNFILTERED(event , ...)
 			end
 		elseif (event == "SPELL_INTERRUPT") then
 			if (desttype[COMBATLOG_FILTER_ME] or sourcetype[COMBATLOG_FILTER_ME] and not sadb.interrupt) then
-				PlaySoundFile(sadb.sapath.."lockout.mp3");
+				if (sadb.combatText and IsAddOnLoaded("Blizzard_CombatText")) then
+					CombatText_AddMessage("Counter",CombatText_StandardScroll, 0,0,0,nil,false)
+				else
+					PlaySoundFile(sadb.sapath.."lockout.mp3");
+				end
 				if (not sadb.chatalerts) then
 					if (sadb.interruptenemy and sourcetype[COMBATLOG_FILTER_ME]) then
 						local it = gsub(sadb.InterruptEnemyText, "(#spell#)", GetSpellLink(spellID))
